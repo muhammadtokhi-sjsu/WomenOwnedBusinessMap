@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 
 const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
+import type { City } from "./MapComponent";
 
 const categories = [
   "Catering",
@@ -21,7 +22,8 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState([...categories]);
   const allSelected = selected.length === categories.length;
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState<City | null>(null);
+  
 
   const handleAllToggle = () => {
     setSelected(allSelected ? [] : [...categories]);

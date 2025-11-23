@@ -16,14 +16,15 @@ const pinkMarker: DivIcon = L.divIcon({
   className: "",
 });
 
-
-const cities: {
+export type City = {
   name: string;
   coords: [number, number];
   category: string;
-  link1: string
-  link2: string
-}[] = [
+  link1: string;
+  link2: string;
+};
+
+const cities: City[] = [
   { name: "Los Angeles", coords: [34.05, -118.25], category: "Catering", link1: "" , link2: "" },
   { name: "Ronnie.DIY", coords: [36.93, -121.76], category: "Decor", link1: "https://www.instagram.com/ronnie.diy/", link2: "https://www.tiktok.com/@ronnie.diy?_r=1&_t=ZT-91d9aBIUNI5" },
   { name: "San Diego", coords: [32.7157, -117.1611], category: "Coffee", link1: "" , link2: "" },
@@ -35,13 +36,14 @@ const cities: {
   { name: "Long Beach", coords: [33.7701, -118.1937], category: "Desserts", link1: ""  , link2: ""},
 ];
 
-const californiaBounds = [
+const californiaBounds: [ [number, number], [number, number] ] = [
   [32.5, -124.5],
   [42.0, -114.1]
 ];
 
 type MapComponentProps = {
   selectedCategories: string[]; // adjust if you use unions/types
+  onMarkerSelect: (city: City) => void;
 };
 
 export default function MapComponent({selectedCategories, onMarkerSelect}: MapComponentProps) {
